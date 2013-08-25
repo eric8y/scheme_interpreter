@@ -1,0 +1,85 @@
+# autograder tests
+
+#q12
+
+(define double (lambda (x) (* 2 x)))(define compose (lambda (f g) (lambda (x) (f (g x)))))  (define apply-twice (lambda (f) (compose f f))) ((apply-twice double) 5)
+
+
+
+
+(define (outer-func x y) (define (inner z x) (list x y z)) inner) ((outer-func 1 2)  1 10)
+
+
+(define (tree-sum-list tree)
+  (define (flatten lst)
+  (if (null? lst)
+      '()
+      (append (car lst)
+              (flatten (cdr lst)))))
+  (define (helper lst1)
+  (if (null? (children tree))
+    '()
+      (append(+ (entry tree) tree-sum-list (children tree) list1))))
+  (flatten helper '()))
+#
+  (define (tree-sum-list tree)
+  (define (flatten lst)
+  (if (null? lst)
+      '()
+      (append (car lst)
+              (flatten (cdr lst)))))
+  (define (helper lst1)
+  (if (null? (children tree))
+    '()
+    (append lst1 (+ (entry tree) (tree-sum-list (children tree)))))))
+  (helper '())
+
+
+
+  (define (tree-sum-list tree)
+  (define (flatten lst)
+  (if (null? lst)
+      '()
+      (append (car lst)
+              (flatten (cdr lst)))))
+  (define (helper lst1)
+  (if (null? (children tree))
+    0
+    (append lst1 (+ (entry tree) (tree-sum-list (children tree))))))
+  (helper '()))
+
+  (define (tree-sum-list tree)
+  (define (flatten lst)
+  (if (null? lst)
+      '()
+      (append (car lst)
+              (flatten (cdr lst)))))
+  (define (helper lst1)
+  (if (null? (children tree))
+    '()
+    (append lst1 ((entry tree) (tree-sum-list (children tree))))
+    (flatten lst1)
+    ))
+  (helper '())
+
+(define (merge comp list1 list2)
+    ; *** YOUR CODE HERE ***
+(cond ((null? list1) 
+            list2)
+      ((null? list2) 
+        list1))
+        (define list1-first (car list1)) (define list2-first  (car list1))
+            (if (comp list1-first list2-first)
+              (cons list1-first (merge comp (cdr list1) list2))
+              (cons list2-first (merge comp list1 (cdr list2)))))
+
+(define (merge comp list1 list2)
+    ; *** YOUR CODE HERE ***
+(cond ((null? list1) 
+            list2)
+      ((null? list2) 
+        list1)
+      (comp (car list1) (car list2))
+              (cons (car list1) (merge comp list2 (cdr list1) ))
+              
+              (cons (car list2) (merge comp (cdr list2) list1))))
